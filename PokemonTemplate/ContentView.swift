@@ -14,7 +14,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(searchPokemon, id: \.self) { pokemon in
-                Text(pokemon.capitalized)
+                HStack{
+                    // Placeholder for the Pokemon Sprite next to each name in view
+                    Circle().frame(width: 50, height: 50)
+                    Text(pokemon.capitalized).padding(.trailing, 20)
+                }
             }
             .onAppear {
                 apiManager.fetchPokemons()

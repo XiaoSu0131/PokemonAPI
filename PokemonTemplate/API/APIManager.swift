@@ -18,7 +18,7 @@ class APIManager {
 
     // Fetch list of Pokémon
     func fetchPokemons() {
-        guard let url = URL(string: "\(baseURL)?limit=20") else {
+        guard let url = URL(string: "\(baseURL)?limit=50") else {
             print("Invalid URL")
             return
         }
