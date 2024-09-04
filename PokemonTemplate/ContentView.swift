@@ -9,15 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     @State var apiManager = APIManager()
+    @State private var searchText = ""
+    
     var body: some View {
         NavigationView {
-            List(apiManager.pokemons, id: \.self) { pokemon in
+            List(searchPokemon, id: \.self) { pokemon in
                 Text(pokemon.capitalized)
             }
             .onAppear {
                 apiManager.fetchPokemons()
             }
             .navigationTitle("Pokémon List")
+            .searchable(text: $searchText)
+        }
+    }
+    
+    private var searchPokemon: [String] {
+        if searchText.isEmpty {
+            return apiManager.pokemons
+        } else {
+            return apiManager.pokemons.filter { $0.contains(searchText.lowercased()) }
         }
     }
 }
@@ -25,3 +36,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+

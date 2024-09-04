@@ -41,6 +41,7 @@ class APIManager {
         }
         task.resume()
     }
+    
 }
 
 // Helper structs for JSON decoding
