@@ -13,11 +13,13 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(searchPokemon, id: \.self) { pokemon in
-                HStack{
-                    // Placeholder for the Pokemon Sprite next to each name in view
-                    Circle().frame(width: 50, height: 50)
-                    Text(pokemon.capitalized).padding(.trailing, 20)
+            List(filteredPokemons, id: \.self) { pokemon in
+                HStack {
+                    // Use PokemonSprite here with the Pokémon's name
+                    PokemonSprite(imageLink: pokemon) // Passing the Pokémon name as the imageLink
+                    
+                    Text(pokemon.capitalized)
+                        .padding(.trailing, 20)
                 }
             }
             .onAppear {
@@ -28,7 +30,7 @@ struct ContentView: View {
         }
     }
     
-    private var searchPokemon: [String] {
+    private var filteredPokemons: [String] {
         if searchText.isEmpty {
             return apiManager.pokemons
         } else {
