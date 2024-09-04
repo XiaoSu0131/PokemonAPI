@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var apiManager = APIManager()
+    @State var apiManager = APIManager() // Use @StateObject for APIManager to observe changes
     @State private var searchText = ""
     
     var body: some View {
         NavigationView {
             List(filteredPokemons, id: \.self) { pokemon in
-                HStack {
-                    // Use PokemonSprite here with the Pokémon's name
-                    PokemonSprite(imageLink: pokemon) // Passing the Pokémon name as the imageLink
-                    
-                    Text(pokemon.capitalized)
-                        .padding(.trailing, 20)
+                NavigationLink(destination: PokemonDetails(pokemonName: pokemon)) {
+                    HStack {
+                        // Display Pokemon's Sprite
+                        PokemonSprite(imageLink: pokemon)
+                        
+                        // Display Pokemon's Name
+                        Text(pokemon.capitalized)
+                            .padding(.trailing, 20)
+                    }
                 }
             }
             .onAppear {

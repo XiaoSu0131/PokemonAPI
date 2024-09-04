@@ -2,7 +2,7 @@
 //  PokemonSprite.swift
 //  PokemonTemplate
 //
-//  Created by Chang Su on 9/3/24.
+//  Created by Chang on 8/30/24.
 //
 
 import SwiftUI
@@ -44,6 +44,6 @@ struct PokemonSprite: View {
 struct PokemonSprite_Previews: PreviewProvider {
     static var previews: some View {
         // Previewing with a sample image link
-        PokemonSprite(imageLink: "pikachu") // Example Pokémon name
+        PokemonSprite(imageLink: "mewtwo") // Example Pokémon name
     }
 }

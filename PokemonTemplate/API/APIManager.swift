@@ -2,7 +2,7 @@
 //  APIManager.swift
 //  PokemonTemplate
 //
-//  Created by Chang on 09/01/2024
+//  Created by Chang on 08/30/2024
 //
 
 import Foundation
@@ -70,8 +70,6 @@ class APIManager {
         }
         task.resume()
     }
-
-    
 }
 
 // Helper structs for JSON decoding

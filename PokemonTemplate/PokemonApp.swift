@@ -1,8 +1,8 @@
 //
-//  PokemonTemplateApp.swift
+//  PokemonApp.swift
 //  PokemonTemplate
 //
-//  Created by Mark Kinoshita on 8/13/24.
+//  Created by Chang on 8/30/24.
 //
 
 import SwiftUI
