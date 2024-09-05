@@ -44,6 +44,6 @@ struct PokemonSprite: View {
 struct PokemonSprite_Previews: PreviewProvider {
     static var previews: some View {
         // Previewing with a sample image link
-        PokemonSprite(imageLink: "mewtwo") // Example Pokémon name
+        PokemonSprite(imageLink: "mewtwo") 
     }
 }

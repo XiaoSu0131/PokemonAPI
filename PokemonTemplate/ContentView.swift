@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var apiManager = APIManager() // Use @StateObject for APIManager to observe changes
+    @State var apiManager = APIManager()
     @State private var searchText = ""
     
     var body: some View {
