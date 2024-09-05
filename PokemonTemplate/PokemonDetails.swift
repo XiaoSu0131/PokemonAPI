@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct PokemonDetails: View {
     let pokemonName: String
     @State private var pokemonDetail: PokemonDetail?
@@ -26,31 +24,46 @@ struct PokemonDetails: View {
                     ProgressView()
                 }
                 
-                // Display Pokemon's name
+                // Display Pokémon's name
                 Text(detail.name.capitalized)
                     .font(.largeTitle)
                     .padding()
                 
-                // Display Pokemon's types
-                HStack {
-                    ForEach(detail.types, id: \.type.name) { typeEntry in
-                        Text(typeEntry.type.name.capitalized)
-                            .padding(.horizontal)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(8)
+                // Display Type
+                VStack(alignment: .leading) {
+                    Text("Type")
+                        .font(.headline)
+                        .padding()
+                    
+                    HStack {
+                        ForEach(detail.types, id: \.type.name) { typeEntry in
+                            Text(typeEntry.type.name.capitalized)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(8)
+                        }
                     }
                 }
-                // Apply padding
                 .padding(.vertical)
                 
-                // Display Pokemon's stats
-                List(detail.stats, id: \.stat.name) { stat in
-                    HStack {
-                        Text(stat.stat.name.capitalized)
-                        Spacer()
-                        Text("\(stat.base_stat)")
+                // Display Stats
+                VStack(alignment: .leading) {
+                    Text("Stats:")
+                        .font(.headline)
+                        .padding()
+                    
+                    ForEach(detail.stats, id: \.stat.name) { stat in
+                        HStack {
+                            Text(stat.stat.name.capitalized)
+                            Spacer()
+                            Text("\(stat.base_stat)")
+                        }
+                        .padding(.vertical, 4)
                     }
                 }
+                .padding(.vertical)
+                
             } else {
                 // Show a loading indicator while fetching data
                 ProgressView()
@@ -65,12 +78,14 @@ struct PokemonDetails: View {
     
     private func fetchPokemonDetail() {
         APIManager().getPokemonData(for: pokemonName) { detail in
-            self.pokemonDetail = detail
+            DispatchQueue.main.async {
+                self.pokemonDetail = detail
+            }
         }
     }
 }
 
-struct PokemonDetailView_Previews: PreviewProvider {
+struct PokemonDetails_Previews: PreviewProvider {
     static var previews: some View {
         PokemonDetails(pokemonName: "pikachu")
     }
